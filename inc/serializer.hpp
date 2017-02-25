@@ -4,8 +4,8 @@
 # include <boost/cstdint.hpp>
 # include <string.h>
 namespace mdl {
-struct serialize {
-	serialize(char __typ) : typ(__typ) {}
+struct serializer {
+	serializer(char __typ) : typ(__typ) {}
 
 	void operator&(std::size_t __size) {
 		if (this-> typ == 's')
