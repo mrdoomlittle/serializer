@@ -48,10 +48,13 @@ struct serializer {
 	}
 
 	void init(std::size_t __bytes) {
-			if (this-> serial != nullptr) std::free(this-> serial);
+		if (this-> serial != nullptr) {
+			std::free(this-> serial);
+			this-> serial = nullptr;
+		}
 
-		this-> serial = static_cast<boost::uint8_t *>(malloc(__bytes));
-		memset(this-> serial, 0x0, __bytes);
+		this-> serial = static_cast<boost::uint8_t *>(malloc(__bytes * sizeof(boost::uint8_t)));
+		memset(this-> serial, 0x0, __bytes * sizeof(boost::uint8_t));
 	}
 
 	template <typename __T>
@@ -72,6 +75,8 @@ struct serializer {
 	char typ = '\0';
 	std::size_t obj_size = 0;
 	std::size_t curr_point = 0;
+
+	public:
 	boost::uint8_t *serial = nullptr;
 } ;
 }
