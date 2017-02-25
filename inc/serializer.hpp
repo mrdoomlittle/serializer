@@ -72,7 +72,7 @@ struct serializer {
 	char typ = '\0';
 	std::size_t obj_size = 0;
 	std::size_t curr_point = 0;
-	boost::uint8_t *serial;
+	boost::uint8_t *serial = nullptr;
 } ;
 }
 
