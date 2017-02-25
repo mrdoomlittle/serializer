@@ -27,11 +27,12 @@ struct serializer {
 				}
 			break;
 			case 'w':
+				std::size_t begin_point = this-> curr_point;
 				for (std::size_t o = 0; o != this-> obj_size; o ++) {
 					__obj |= (__obj & 0xFF) | (this-> serial[this-> curr_point] << (o * 8));
 					this-> curr_point ++;
 				}
-				memset(this-> serial - this-> curr_point, 0x0, this-> obj_size);
+				memset(this-> serial + begin_point, 0x0, this-> obj_size);
 			break;
 		}
 	}
@@ -82,3 +83,4 @@ struct serializer {
 }
 
 # endif /*__serializer__hpp*/
+
